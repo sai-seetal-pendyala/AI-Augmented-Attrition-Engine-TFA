@@ -43,29 +43,30 @@ best balanced model (combined SVM)
 
 ## Contents
 
-| Section | What you'll find |
-|:--------|:-----------------|
-| [Project snapshot](#project-snapshot) | Quick-glance specs |
-| [The problem](#the-problem) | Why TFA's funnel was leaking |
-| [Data](#data) | 74,839 records, 39 variables, one outcome |
-| [Three analytical lenses](#three-analytical-lenses) | Behavioral vs academic vs combined |
-| [Analysis](#analysis) | 5 algorithms, 3 feature sets, 15 models |
-| [Key findings](#key-findings) | What actually predicts withdrawal |
-| [Recommendations](#recommendations) | What TFA should do differently |
-| [Reproduce it](#reproduce-it) | Clone, install, run |
+<table width="100%">
+<tr><th align="left" width="40%">Section</th><th align="left" width="60%">What you'll find</th></tr>
+<tr><td><a href="#project-snapshot">Project snapshot</a></td><td>Quick-glance specs</td></tr>
+<tr><td><a href="#the-problem">The problem</a></td><td>Why TFA's funnel was leaking</td></tr>
+<tr><td><a href="#data">Data</a></td><td>74,839 records, 39 variables, one outcome</td></tr>
+<tr><td><a href="#three-analytical-lenses">Three analytical lenses</a></td><td>Behavioral vs academic vs combined</td></tr>
+<tr><td><a href="#analysis">Analysis</a></td><td>5 algorithms, 3 feature sets, 15 models</td></tr>
+<tr><td><a href="#key-findings">Key findings</a></td><td>What actually predicts withdrawal</td></tr>
+<tr><td><a href="#recommendations">Recommendations</a></td><td>What TFA should do differently</td></tr>
+<tr><td><a href="#reproduce-it">Reproduce it</a></td><td>Clone, install, run</td></tr>
+</table>
 
 ---
 
 ## Project snapshot
 
-| | |
-|:---|:---|
-| **Domain** | People analytics, nonprofit recruitment |
-| **Context** | Harvard Business School case study (Polzer & Kelley, 2018) |
-| **Course** | MAX 522 -- Predictive Analytics, Illinois Institute of Technology |
-| **Tools** | R, caret, ROSE, e1071, nnet, C5.0 |
-| **Methods** | KNN, Naive Bayes, Decision Trees, ANN, SVM (x3 feature sets) |
-| **Dataset** | 74,839 TFA applicants, 39 variables, 80/20 train-test split |
+<table width="100%">
+<tr><td width="20%"><b>Domain</b></td><td width="80%">People analytics, nonprofit recruitment</td></tr>
+<tr><td><b>Context</b></td><td>Harvard Business School case study (Polzer & Kelley, 2018)</td></tr>
+<tr><td><b>Course</b></td><td>MAX 522 -- Predictive Analytics, Illinois Institute of Technology</td></tr>
+<tr><td><b>Tools</b></td><td>R, caret, ROSE, e1071, nnet, C5.0</td></tr>
+<tr><td><b>Methods</b></td><td>KNN, Naive Bayes, Decision Trees, ANN, SVM (x3 feature sets)</td></tr>
+<tr><td><b>Dataset</b></td><td>74,839 TFA applicants, 39 variables, 80/20 train-test split</td></tr>
+</table>
 
 ---
 
@@ -75,12 +76,13 @@ Between 2013 and 2016, applications to Teach For America fell from 57,000 to few
 
 TFA employed roughly 160 recruiters and associates who each managed hundreds of prospects. They had no systematic way to tell which applicants genuinely needed a nudge and which were already gone. Strong candidates disengaged unnoticed. Recruiter time went to applicants who were already going to complete -- or were already going to leave regardless.
 
-| Problem | Scale |
-|:--------|:------|
-| Application decline | 35% drop over 3 years (2013-2016) |
-| Class imbalance | 80.7% completed, 19.3% withdrew |
-| Recruiter bandwidth | ~160 staff across hundreds of campuses |
-| Cost of a missed withdrawal | Wasted interview slots, planning, outreach hours |
+<table width="100%">
+<tr><th align="left" width="35%">Problem</th><th align="left" width="65%">Scale</th></tr>
+<tr><td>Application decline</td><td>35% drop over 3 years (2013-2016)</td></tr>
+<tr><td>Class imbalance</td><td>80.7% completed, 19.3% withdrew</td></tr>
+<tr><td>Recruiter bandwidth</td><td>~160 staff across hundreds of campuses</td></tr>
+<tr><td>Cost of a missed withdrawal</td><td>Wasted interview slots, planning, outreach hours</td></tr>
+</table>
 
 The case asks two questions: What predictive models and variables should TFA use? And how heavily should the organization rely on them?
 
@@ -148,13 +150,14 @@ flowchart LR
 
 **Five algorithms per lens, tuned via cross-validation:**
 
-| Algorithm | Tuning | CV |
-|:----------|:-------|:---|
-| KNN | k = 1-10 (auto) | 10-fold |
-| Naive Bayes | Laplace {0-2}, kernel {T/F}, adjust {0.75-2} | 10-fold |
-| Decision Tree (C5.0) | Tree vs rules, winnow, trials 1-9 | 10-fold |
-| ANN (nnet) | Hidden units {5,10,15}, decay {0.1-0.7} | 5-fold |
-| SVM (radial) | sigma = 0.01, C = {1,2} | 3-fold |
+<table width="100%">
+<tr><th align="left" width="25%">Algorithm</th><th align="left" width="55%">Tuning</th><th align="left" width="20%">CV</th></tr>
+<tr><td>KNN</td><td>k = 1-10 (auto)</td><td>10-fold</td></tr>
+<tr><td>Naive Bayes</td><td>Laplace {0-2}, kernel {T/F}, adjust {0.75-2}</td><td>10-fold</td></tr>
+<tr><td>Decision Tree (C5.0)</td><td>Tree vs rules, winnow, trials 1-9</td><td>10-fold</td></tr>
+<tr><td>ANN (nnet)</td><td>Hidden units {5,10,15}, decay {0.1-0.7}</td><td>5-fold</td></tr>
+<tr><td>SVM (radial)</td><td>sigma = 0.01, C = {1,2}</td><td>3-fold</td></tr>
+</table>
 
 The full cross-approach comparison -- 15 models evaluated on accuracy, sensitivity, specificity, and Kappa:
 
