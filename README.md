@@ -20,21 +20,21 @@ Teach For America's applications dropped 35% in three years. A hundred recruiter
 
 <table width="100%">
 <tr>
-<td align="center" width="25%">
+<td align="center" width="25%" valign="top">
 <h1>74,839</h1>
-<sub>applicant records<br>analyzed</sub>
+applicant records analyzed
 </td>
-<td align="center" width="25%">
+<td align="center" width="25%" valign="top">
 <h1>15</h1>
-<sub>models compared<br>across 3 lenses</sub>
+models compared across 3 lenses
 </td>
-<td align="center" width="25%">
+<td align="center" width="25%" valign="top">
 <h1>67.9%</h1>
-<sub>top accuracy<br>(combined decision tree)</sub>
+top accuracy (combined decision tree)
 </td>
-<td align="center" width="25%">
+<td align="center" width="25%" valign="top">
 <h1>62.7%</h1>
-<sub>best balanced model<br>(combined SVM)</sub>
+best balanced model (combined SVM)
 </td>
 </tr>
 </table>
@@ -160,10 +160,10 @@ The full cross-approach comparison -- 15 models evaluated on accuracy, sensitivi
 
 <table width="100%">
 <tr>
-<th align="left">Model</th>
-<th align="center">Behavioral</th>
-<th align="center">Academic</th>
-<th align="center">Combined</th>
+<th align="left" width="25%">Model</th>
+<th align="center" width="25%">Behavioral</th>
+<th align="center" width="25%">Academic</th>
+<th align="center" width="25%">Combined</th>
 </tr>
 <tr><td colspan="4"><b>KNN</b></td></tr>
 <tr><td>Accuracy</td><td align="center">52.5%</td><td align="center">54.8%</td><td align="center">54.1%</td></tr>
