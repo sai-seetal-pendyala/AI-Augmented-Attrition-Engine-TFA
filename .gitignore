@@ -1,0 +1,19 @@
+# R session
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Data (copyrighted HBS case material)
+*.csv
+*.xlsx
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
