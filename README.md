@@ -14,7 +14,7 @@
 
 Teach For America's applications dropped 35% in three years. A hundred recruiters managing thousands of prospects had no way to tell which applicants would quietly disengage and which would make it to the classroom. This project builds 15 classification models across three analytical lenses -- behavioral, academic, and combined -- to score withdrawal risk before it happens. The result: **behavioral engagement signals predict dropout far more reliably than grades or school prestige ever could**, and a Combined SVM model gives TFA recruiters a practical way to focus their time on the applicants most likely to walk away.
 
-> Case study: [People Analytics at Teach For America (A)](https://www.hbs.edu/faculty/Pages/item.aspx?num=54657) -- Harvard Business School, Polzer & Kelley, 2018
+> Case study: [People Analytics at Teach For America (A)](docs/People-Analytics-at-TFA-Case-Study.pdf)
 
 ---
 
@@ -108,17 +108,17 @@ Rather than building one model, we designed three parallel approaches to test wh
 
 <table width="100%">
 <tr>
-<td align="center" width="33%">
+<td align="center" width="33%" valign="top">
 <h3>Behavioral</h3>
-<sub>Timing, essay effort,<br>event attendance<br><br><b>Tests:</b> Is withdrawal<br>a motivation problem?</sub>
+Timing, essay effort, event attendance<br><br><b>Tests:</b> Is withdrawal a motivation problem?
 </td>
-<td align="center" width="33%">
+<td align="center" width="33%" valign="top">
 <h3>Academic</h3>
-<sub>GPA, school selectivity,<br>STEM status, major count<br><br><b>Tests:</b> Do stronger profiles<br>persist more?</sub>
+GPA, school selectivity, STEM status, major count<br><br><b>Tests:</b> Do stronger profiles persist more?
 </td>
-<td align="center" width="33%">
+<td align="center" width="33%" valign="top">
 <h3>Combined</h3>
-<sub>All behavioral + academic<br>variables together<br><br><b>Tests:</b> Does a holistic view<br>improve prediction?</sub>
+All behavioral + academic variables together<br><br><b>Tests:</b> Does a holistic view improve prediction?
 </td>
 </tr>
 </table>
@@ -192,17 +192,7 @@ The full cross-approach comparison -- 15 models evaluated on accuracy, sensitivi
 <tr><td>Kappa</td><td align="center">0.096</td><td align="center">0.141</td><td align="center">0.171</td></tr>
 </table>
 
-The Combined SVM confusion matrix -- the most balanced performer across all 15 models:
-
-<p align="center">
-  <img src="assets/combined_svm_cm.png" alt="Combined SVM confusion matrix: 62.7% accuracy, balanced sensitivity and specificity" width="100%"/>
-</p>
-
-The Combined Decision Tree achieved the highest raw accuracy at 67.9%, but its specificity (41.6%) means it misses most withdrawals -- it's good at confirming completers but bad at catching the people TFA actually needs to reach:
-
-<p align="center">
-  <img src="assets/combined_dt_cm.png" alt="Combined Decision Tree confusion matrix: 67.9% accuracy but 41.6% specificity" width="100%"/>
-</p>
+The Combined SVM is the most balanced performer across all 15 models. The Combined Decision Tree achieved the highest raw accuracy at 67.9%, but its specificity (41.6%) means it misses most withdrawals -- good at confirming completers but bad at catching the people TFA actually needs to reach.
 
 ---
 
@@ -219,10 +209,6 @@ Four patterns held across all 15 models:
 **3. Combined models outperform both subsets.** Every algorithm improved when behavioral and academic features were merged. Decision Trees, ANN, and SVM all crossed 62% accuracy in the combined setting -- none reached it in isolation. The interaction between engagement patterns and background creates signals that neither dimension contains on its own.
 
 **4. Event attendance consistently predicts persistence.** Applicants who attended a TFA-hosted recruiting event completed the process at higher rates across every model. Only 12.6% of applicants attended events, making this a high-signal, low-base-rate variable.
-
-<p align="center">
-  <img src="assets/combined_ann_cm.png" alt="Combined ANN confusion matrix: 62.4% accuracy, highest Kappa at 0.173" width="100%"/>
-</p>
 
 ---
 
