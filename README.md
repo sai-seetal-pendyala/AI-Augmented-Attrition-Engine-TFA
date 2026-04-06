@@ -14,7 +14,7 @@
 
 Teach For America's applications dropped 35% in three years. A hundred recruiters managing thousands of prospects had no way to tell which applicants would quietly disengage and which would make it to the classroom. This project builds 15 classification models across three analytical lenses -- behavioral, academic, and combined -- to score withdrawal risk before it happens. The result: **behavioral engagement signals predict dropout far more reliably than grades or school prestige ever could**, and a Combined SVM model gives TFA recruiters a practical way to focus their time on the applicants most likely to walk away.
 
-> Case study: [People Analytics at Teach For America (A)](docs/People Analytics at Teach For America A.pdf)
+> Case study: [People Analytics at Teach For America (A)](<docs/People Analytics at Teach For America A.pdf>)
 
 ---
 
@@ -65,7 +65,7 @@ best balanced model (combined SVM)
 | **Domain** | People analytics, nonprofit recruitment |
 |---|---|
 | **Context** | Harvard Business School case study (Polzer & Kelley, 2018) |
-| **Course** | MAX 522 -- Predictive Analytics, Illinois Institute of Technology |
+| **Course** | MAX 522 -- Predictive Analytics, Stuart SChool of Business |
 | **Tools** | R, caret, ROSE, e1071, nnet, C5.0 |
 | **Methods** | KNN, Naive Bayes, Decision Trees, ANN, SVM (x3 feature sets) |
 | **Dataset** | 74,839 TFA applicants, 39 variables, 80/20 train-test split |
