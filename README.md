@@ -101,7 +101,7 @@ The dataset contains **74,839 applicant records** with **39 variables** covering
 
 The class split is heavily imbalanced (80.7% completed vs 19.3% withdrew), which we address with ROSE hybrid sampling on the training set only.
 
-> The dataset originates from a [Harvard Business School case study](https://www.hbs.edu/faculty/Pages/item.aspx?num=54657) (Polzer & Kelley, 2018) and is used under academic license. It is not included in this repository.
+> The dataset originates from a [Harvard Business School case study](https://www.iveypublishing.ca/s/product/people-analytics-at-teach-for-america-data-set/01t5c00000CwnlNAAR) (Polzer & Kelley, 2018) and is used under academic license. It is not included in this repository.
 
 ---
 
