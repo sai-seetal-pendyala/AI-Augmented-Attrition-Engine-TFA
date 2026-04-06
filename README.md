@@ -14,7 +14,7 @@
 
 Teach For America's applications dropped 35% in three years. A hundred recruiters managing thousands of prospects had no way to tell which applicants would quietly disengage and which would make it to the classroom. This project builds 15 classification models across three analytical lenses -- behavioral, academic, and combined -- to score withdrawal risk before it happens. The result: **behavioral engagement signals predict dropout far more reliably than grades or school prestige ever could**, and a Combined SVM model gives TFA recruiters a practical way to focus their time on the applicants most likely to walk away.
 
-> Case study: [People Analytics at Teach For America (A)](docs/People-Analytics-at-TFA-Case-Study.pdf)
+> Case study: [People Analytics at Teach For America (A)](docs/People Analytics at Teach For America A.pdf)
 
 ---
 
@@ -22,18 +22,22 @@ Teach For America's applications dropped 35% in three years. A hundred recruiter
 <tr>
 <td align="center" width="25%" valign="top">
 <h1>74,839</h1>
+<hr>
 applicant records analyzed
 </td>
 <td align="center" width="25%" valign="top">
 <h1>15</h1>
+<hr>
 models compared across 3 lenses
 </td>
 <td align="center" width="25%" valign="top">
 <h1>67.9%</h1>
+<hr>
 top accuracy (combined decision tree)
 </td>
 <td align="center" width="25%" valign="top">
 <h1>62.7%</h1>
+<hr>
 best balanced model (combined SVM)
 </td>
 </tr>
@@ -43,30 +47,28 @@ best balanced model (combined SVM)
 
 ## Contents
 
-<table width="100%">
-<tr><th align="left" width="40%">Section</th><th align="left" width="60%">What you'll find</th></tr>
-<tr><td><a href="#project-snapshot">Project snapshot</a></td><td>Quick-glance specs</td></tr>
-<tr><td><a href="#the-problem">The problem</a></td><td>Why TFA's funnel was leaking</td></tr>
-<tr><td><a href="#data">Data</a></td><td>74,839 records, 39 variables, one outcome</td></tr>
-<tr><td><a href="#three-analytical-lenses">Three analytical lenses</a></td><td>Behavioral vs academic vs combined</td></tr>
-<tr><td><a href="#analysis">Analysis</a></td><td>5 algorithms, 3 feature sets, 15 models</td></tr>
-<tr><td><a href="#key-findings">Key findings</a></td><td>What actually predicts withdrawal</td></tr>
-<tr><td><a href="#recommendations">Recommendations</a></td><td>What TFA should do differently</td></tr>
-<tr><td><a href="#reproduce-it">Reproduce it</a></td><td>Clone, install, run</td></tr>
-</table>
+| **Section** | **What you'll find** |
+|---|---|
+| [Project snapshot](#project-snapshot) | Quick-glance specs |
+| [The problem](#the-problem) | Why TFA's funnel was leaking |
+| [Data](#data) | 74,839 records, 39 variables, one outcome |
+| [Three analytical lenses](#three-analytical-lenses) | Behavioral vs academic vs combined |
+| [Analysis](#analysis) | 5 algorithms, 3 feature sets, 15 models |
+| [Key findings](#key-findings) | What actually predicts withdrawal |
+| [Recommendations](#recommendations) | What TFA should do differently |
+| [Reproduce it](#reproduce-it) | Clone, install, run |
 
 ---
 
 ## Project snapshot
 
-<table width="100%">
-<tr><td width="20%"><b>Domain</b></td><td width="80%">People analytics, nonprofit recruitment</td></tr>
-<tr><td><b>Context</b></td><td>Harvard Business School case study (Polzer & Kelley, 2018)</td></tr>
-<tr><td><b>Course</b></td><td>MAX 522 -- Predictive Analytics, Illinois Institute of Technology</td></tr>
-<tr><td><b>Tools</b></td><td>R, caret, ROSE, e1071, nnet, C5.0</td></tr>
-<tr><td><b>Methods</b></td><td>KNN, Naive Bayes, Decision Trees, ANN, SVM (x3 feature sets)</td></tr>
-<tr><td><b>Dataset</b></td><td>74,839 TFA applicants, 39 variables, 80/20 train-test split</td></tr>
-</table>
+| **Domain** | People analytics, nonprofit recruitment |
+|---|---|
+| **Context** | Harvard Business School case study (Polzer & Kelley, 2018) |
+| **Course** | MAX 522 -- Predictive Analytics, Illinois Institute of Technology |
+| **Tools** | R, caret, ROSE, e1071, nnet, C5.0 |
+| **Methods** | KNN, Naive Bayes, Decision Trees, ANN, SVM (x3 feature sets) |
+| **Dataset** | 74,839 TFA applicants, 39 variables, 80/20 train-test split |
 
 ---
 
@@ -76,13 +78,12 @@ Between 2013 and 2016, applications to Teach For America fell from 57,000 to few
 
 TFA employed roughly 160 recruiters and associates who each managed hundreds of prospects. They had no systematic way to tell which applicants genuinely needed a nudge and which were already gone. Strong candidates disengaged unnoticed. Recruiter time went to applicants who were already going to complete -- or were already going to leave regardless.
 
-<table width="100%">
-<tr><th align="left" width="35%">Problem</th><th align="left" width="65%">Scale</th></tr>
-<tr><td>Application decline</td><td>35% drop over 3 years (2013-2016)</td></tr>
-<tr><td>Class imbalance</td><td>80.7% completed, 19.3% withdrew</td></tr>
-<tr><td>Recruiter bandwidth</td><td>~160 staff across hundreds of campuses</td></tr>
-<tr><td>Cost of a missed withdrawal</td><td>Wasted interview slots, planning, outreach hours</td></tr>
-</table>
+| **Problem** | **Scale** |
+|---|---|
+| Application decline | 35% drop over 3 years (2013-2016) |
+| Class imbalance | 80.7% completed, 19.3% withdrew |
+| Recruiter bandwidth | ~160 staff across hundreds of campuses |
+| Cost of a missed withdrawal | Wasted interview slots, planning, outreach hours |
 
 The case asks two questions: What predictive models and variables should TFA use? And how heavily should the organization rely on them?
 
@@ -112,14 +113,17 @@ Rather than building one model, we designed three parallel approaches to test wh
 <tr>
 <td align="center" width="33%" valign="top">
 <h3>Behavioral</h3>
+<hr>
 Timing, essay effort, event attendance<br><br><b>Tests:</b> Is withdrawal a motivation problem?
 </td>
 <td align="center" width="33%" valign="top">
 <h3>Academic</h3>
+<hr>
 GPA, school selectivity, STEM status, major count<br><br><b>Tests:</b> Do stronger profiles persist more?
 </td>
 <td align="center" width="33%" valign="top">
 <h3>Combined</h3>
+<hr>
 All behavioral + academic variables together<br><br><b>Tests:</b> Does a holistic view improve prediction?
 </td>
 </tr>
@@ -150,14 +154,13 @@ flowchart LR
 
 **Five algorithms per lens, tuned via cross-validation:**
 
-<table width="100%">
-<tr><th align="left" width="25%">Algorithm</th><th align="left" width="55%">Tuning</th><th align="left" width="20%">CV</th></tr>
-<tr><td>KNN</td><td>k = 1-10 (auto)</td><td>10-fold</td></tr>
-<tr><td>Naive Bayes</td><td>Laplace {0-2}, kernel {T/F}, adjust {0.75-2}</td><td>10-fold</td></tr>
-<tr><td>Decision Tree (C5.0)</td><td>Tree vs rules, winnow, trials 1-9</td><td>10-fold</td></tr>
-<tr><td>ANN (nnet)</td><td>Hidden units {5,10,15}, decay {0.1-0.7}</td><td>5-fold</td></tr>
-<tr><td>SVM (radial)</td><td>sigma = 0.01, C = {1,2}</td><td>3-fold</td></tr>
-</table>
+| **Algorithm** | **Tuning** | **CV** |
+|---|---|---|
+| KNN | k = 1-10 (auto) | 10-fold |
+| Naive Bayes | Laplace {0-2}, kernel {T/F}, adjust {0.75-2} | 10-fold |
+| Decision Tree (C5.0) | Tree vs rules, winnow, trials 1-9 | 10-fold |
+| ANN (nnet) | Hidden units {5,10,15}, decay {0.1-0.7} | 5-fold |
+| SVM (radial) | sigma = 0.01, C = {1,2} | 3-fold |
 
 The full cross-approach comparison -- 15 models evaluated on accuracy, sensitivity, specificity, and Kappa:
 
@@ -250,7 +253,7 @@ source("code/02_academic_model.R")     # Academic approach (5 models)
 source("code/03_combined_model.R")     # Combined approach (5 models)
 ```
 
-**Data:** The dataset originates from the Harvard Business School case ["People Analytics at Teach For America (A)"](https://www.hbs.edu/faculty/Pages/item.aspx?num=54657) (Case 418-013, Polzer & Kelley, 2018). Access requires an HBS case license. Place the CSV in the project root as `People Analytics at Teach For America Data Set.csv`.
+**Data:** Place the CSV in the project root as `People Analytics at Teach For America Data Set.csv`. The dataset is available in the [data/](data/) folder.
 
 ---
 
